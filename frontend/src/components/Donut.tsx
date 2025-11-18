@@ -21,7 +21,7 @@ export default function Donut({ donut }: DonutProps) {
       </p>
       <div className={"flex justify-between gap-x-8"}>
         <DonutLikeButton donutId={donut.id} currentLikes={donut.likes} />
-        <FavButton donutId={donut.id} />
+        {/* <FavButton donutId={donut.id} />*/}
       </div>
     </div>
   );

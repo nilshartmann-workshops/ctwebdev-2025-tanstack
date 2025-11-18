@@ -22,28 +22,28 @@ function RouteComponent() {
 
   return (
     <div className={"DonutListRouteComponent"}>
-      <div className={"OrderButtons"}>
-        <Link
-          to={"/donuts"}
-          search={{
-            orderBy: "name",
-          }}
-        >
-          Name
-        </Link>
-        <Link
-          to={"/donuts"}
-          search={{
-            orderBy: "likes",
-          }}
-        >
-          Likes
-        </Link>
-      </div>
+      {/* <div className={"OrderButtons"}>*/}
+      {/*  <Link*/}
+      {/*    to={"/donuts"}*/}
+      {/*    search={{*/}
+      {/*      orderBy: "name",*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    Name*/}
+      {/*  </Link>*/}
+      {/*  <Link*/}
+      {/*    to={"/donuts"}*/}
+      {/*    search={{*/}
+      {/*      orderBy: "likes",*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    Likes*/}
+      {/*  </Link>*/}
+      {/* </div>*/}
 
       <DonutList donuts={donuts} />
       {/* example: global state behaviour of cache */}
-      <FavList favIds={["1", "2"]} />
+      {/* <FavList favIds={["1", "2"]} />*/}
     </div>
   );
 }
