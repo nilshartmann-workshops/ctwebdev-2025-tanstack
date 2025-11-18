@@ -8,6 +8,7 @@ import appCss from "../styles.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
 import DevtoolsPanel from "@/components/DevtoolsPanel.tsx";
+import { showQueryDevTools } from "@/demo-config.ts";
 
 interface MyRouterContext {
   queryClient: QueryClient;
@@ -58,7 +59,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
          👉 even on SSR'ed routes, the cache content is
             populated on server
         */}
-        <DevtoolsPanel />
+        {showQueryDevTools && <DevtoolsPanel />}
 
         <Scripts />
       </body>

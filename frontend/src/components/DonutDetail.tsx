@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { ReactNode, Suspense } from "react";
 import { DonutDto } from "@/types.ts";
 import CommentList from "@/components/CommentList.tsx";
 import Donut from "@/components/Donut.tsx";
@@ -6,22 +6,19 @@ import CommentLoadingIndicator from "@/components/CommentListLoadingIndicator.ts
 
 type DonutDetailProps = {
   donut: DonutDto;
+  commentList?: ReactNode;
 };
-export default function DonutDetail({ donut }: DonutDetailProps) {
+export default function DonutDetail({ donut, commentList }: DonutDetailProps) {
   return (
     <div className={"DonutDetail"}>
       <Donut donut={donut} />
 
-      <div className={"CommentList"}>
-        <h1>What the Snackers Say</h1>
-        {/*
-        👀 Seitenquelltext:
-            - Suspended HTML (!) is returned from server
-        */}
-        <Suspense fallback={<CommentLoadingIndicator />}>
-          <CommentList donutId={donut.id} />
-        </Suspense>
-      </div>
+      {!!commentList && (
+        <div className={"CommentList"}>
+          <h1>What the Snackers Say</h1>
+          {commentList}
+        </div>
+      )}
     </div>
   );
 }

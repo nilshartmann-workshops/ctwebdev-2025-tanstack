@@ -43,6 +43,26 @@
   --color-sprinkleWhite: #fff8f1;
   --color-sprinkleOrange: #ffa857;
   --color-bg: #ffe6ec;
+
+  --animate-marquee-left: marquee-left var(--duration, 40s) linear infinite;
+  --animate-marquee-up: marquee-up var(--duration, 40s) linear infinite;
+
+  @keyframes marquee-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-up {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
 }
 
 @layer utilities {
@@ -119,6 +139,15 @@
   input,
   textarea {
     @apply rounded-lg border px-2 py-2;
+  }
+
+  .BgGradient {
+    background-image: linear-gradient(
+      135deg,
+      #ffe6ec 0%,
+      #f78cb7 50%,
+      #f3b36b 100%
+    );
   }
 
   .Root {

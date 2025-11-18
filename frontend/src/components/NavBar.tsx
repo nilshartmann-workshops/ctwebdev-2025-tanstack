@@ -1,23 +1,38 @@
 import { Link } from "@tanstack/react-router";
+import BreakingNews from "@/components/BreakingNews.tsx";
+import { showBreakingNews } from "@/demo-config.ts";
 
 export default function NavBar() {
   return (
     <nav
       className={
-        "container mx-auto mb-4 flex items-center justify-center gap-x-8 border-b-2 border-b-teal-900 p-4 font-bold"
+        "relative container mx-auto flex min-h-16 items-center justify-between border-b-2 border-b-teal-900 py-4 font-bold"
       }
     >
-      {/* todo: update Link to point to "/"-Route */}
-      <Link to={"/"}>
-        <img src={"/images/d-icon.png"} className={"h-12"} alt={"Home"} />
-      </Link>
-      {/* todo: update Link to point to "/donuts"-Route */}
-      <Link
-        to={"/donuts"}
-        className="hover:text-sprinkleBlue text-brown tracking-wider"
-      >
-        Donuts
-      </Link>
+      <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-x-2">
+        <Link to={"/"}>
+          <img src={"/images/d-icon.png"} className={"h-12"} alt={"Home"} />
+        </Link>
+        <Link
+          to={"/donuts"}
+          className="hover:text-sprinkleBlue text-brown tracking-wider"
+        >
+          Donuts
+        </Link>
+      </div>
+      {showBreakingNews && (
+        <div
+          className={
+            "BgGradient ml-auto max-w-80 cursor-pointer rounded-lg p-4"
+          }
+        >
+          <BreakingNews>
+            Donut prototype triggers random flavor glitches on deploy. +++ Beta
+            donut sparks instant taste explosions—handle with care. +++ Rogue
+            glaze causes unexpected sugar spikes in the UI.
+          </BreakingNews>
+        </div>
+      )}
     </nav>
   );
 }
