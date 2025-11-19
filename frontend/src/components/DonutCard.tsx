@@ -13,7 +13,14 @@ export default function DonutCard({ donut }: DonutCardProps) {
       <img alt={donut.name} src={`/images/${donut.image}`} />
       <div className={"content"}>
         {/* todo: link */}
-        <h2>{donut.name}</h2>
+        <Link
+          to={"/donuts/$donutId"}
+          params={{
+            donutId: donut.id,
+          }}
+        >
+          <h2>{donut.name}</h2>
+        </Link>
         <div className={"buttons"}>
           <DonutLikeButton donutId={donut.id} currentLikes={donut.likes} />
         </div>
