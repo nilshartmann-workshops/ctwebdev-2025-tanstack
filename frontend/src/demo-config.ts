@@ -1,3 +1,3 @@
 export const showQueryDevTools = true;
 
-export const showBreakingNews = false;
+export const showBreakingNews = true;

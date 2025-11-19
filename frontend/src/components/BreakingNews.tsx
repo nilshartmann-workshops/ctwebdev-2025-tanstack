@@ -8,7 +8,8 @@ interface BreakingNewsProps {
 }
 
 export default function BreakingNews({ children }: BreakingNewsProps) {
-  const [visible] = [false];
+  // "Regular" React state -> nothing special
+  const [visible, setVisible] = useState(false);
 
   const buttonClassName = twMerge(
     "border-brown text-brown hover:bg-sprinkleBlue font-caveat flex items-center justify-center space-x-2 rounded-2xl border bg-slate-50 px-3 py-1 hover:cursor-pointer hover:text-white",
@@ -27,7 +28,7 @@ export default function BreakingNews({ children }: BreakingNewsProps) {
           {children}
         </Marquee>
       )}
-      <button className={buttonClassName}>
+      <button className={buttonClassName} onClick={() => setVisible(!visible)}>
         {visible ? (
           <i className="fa-regular fa-circle-xmark" />
         ) : (
