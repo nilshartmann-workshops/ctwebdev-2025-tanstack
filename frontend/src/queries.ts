@@ -44,18 +44,40 @@ export const fetchCommentsOpts = (donutId: string) =>
     },
   });
 
+const saveLikeAction = createServerFn({ method: "POST" })
+  .inputValidator((data) => {
+    // our endpoint can be called by ANYONE
+    // so it's important to validate
+    // typescript only is not safe!
+    if (typeof data === "string") {
+      return data;
+    }
+
+    throw new Error("Invalid data");
+  })
+  .handler(async ({ data: donutId }) => {
+    // Handler only called when data is valid
+    // type of data is inferred
+    const response = await ky
+      .put(`http://localhost:7200/api/donuts/${donutId}/likes`)
+      .json();
+    return DonutDto.parse(response);
+  });
+
 export const useLikeMutation = (donutId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
     async mutationFn() {
       // 🔍 Where is this mutation executed?
-      const response = await ky
-        .put(`http://localhost:7200/api/donuts/${donutId}/likes`)
-        .json();
-      return DonutDto.parse(response);
+      return saveLikeAction({
+        data: donutId,
+      });
     },
     onSuccess() {
+      // 🔍 Where are this queries executed
+      //   💡 In real live we could move them to server functions as well
+      //      because TS Start supports READING data in server functions
       return Promise.all([
         queryClient.invalidateQueries({
           queryKey: fetchDonutDetailsOpts(donutId).queryKey,
